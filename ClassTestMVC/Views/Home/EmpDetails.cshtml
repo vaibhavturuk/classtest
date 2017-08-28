@@ -1,0 +1,22 @@
+﻿@model ClassTestMVC.Models.EmpViewModel
+@{
+    ViewBag.Title = "EmpDetails";
+}
+
+<h2>EmpDetails</h2>
+
+@if (Model != null)
+{ < div >
+    Employee Deatils < /div>
+
+    < div >
+     Name: @Model.Name < /div>
+
+    < div >
+    Email: @Model.Email < /div>
+
+    < div >
+    Phone: @Model.Phone < /div>
+    } 
+else { < div > Employee Deatils not found < /div>
+    }  

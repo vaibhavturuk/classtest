@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ClassTestMVC.Models.Emp>
+@{
+    ViewBag.Title = "Index";
+}
+<h2 class="s3"><strong>Employee Portal</strong></h2>
+<hr style="border: 3px initial black;" />
+<style>
+    .s1
+    {
+        text-align:center;
+        padding-left:630px;
+    }
+    .s3{text-align:center;}
+</style>
+<p class="s1">
+
+    @Html.ActionLink("Add Employee ", "Create", null, new { @class = "btn btn-primary btn-large" })
+</p>
+<!--Add Jquery Datatable reference files-->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<div style="width:90%;">
+    <table id="Jdatatable" class="table table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Marital Status</th>
+                <th>Action</th>
+
+            </tr>
+           
+
+        </thead>
+    </table>
+
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $("#Jdatatable").DataTable({
+            "ajax": {
+                "url": "/Home/GetData",
+                "type": "GET",
+                "datatype":"json"
+            },
+            "columns": [
+                        { "data": "Id", "autoWidth": true },
+                        { "data": "Name", "autoWidth": true },
+                        { "data": "Phone", "autoWidth": true },
+                        { "data": "Email", "autoWidth": true },
+                        { "data": "MaritalStatus", "autoWidth": true },
+             
+                          {
+                              data: null,
+                              className: "center",
+                              defaultContent: '<a href="" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a>'
+                          }
+                     ]
+        });
+       
+    });
+    </script>
+}
+
+

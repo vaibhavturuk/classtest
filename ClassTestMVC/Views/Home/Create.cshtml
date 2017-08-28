@@ -1,0 +1,109 @@
+﻿@model ClassTestMVC.Models.EmpViewModel
+@{
+    ViewBag.Title = "Create";
+}
+<style>
+    .s2{margin-left:170px;}
+
+    .input-validation-error{
+        border:solid 2px red;
+    }
+    .form-group1{
+        padding-left:170px;
+    }
+</style>
+<h2>Employee portal</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employee.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Employee.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Employee.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employee.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Employee.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Employee.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employee.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Employee.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Employee.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employee.MaritalStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="row">
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Married
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Unmarried
+                    </label>
+                    @Html.ValidationMessageFor(model => model.Employee.MaritalStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Employee.MaritalStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.Employee.MaritalStatus, "Married")
+                @Html.Label("Married", "Married.") &nbsp;
+                @Html.CheckBoxFor(model => model.Employee.MaritalStatus, "UnMarried")
+                @Html.Label("UnMarried", "UnMarried") &nbsp;
+            </div>
+        </div>*@
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Employee.StateId, new SelectList(Model.Ste, "SteId", "SteName"), "Select Your State", new { @id = "c", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.StateId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Employee.cityId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Employee.cityId, new SelectList(Model.City, "CityId", "CityName"), "Select Your City", new { @id = "c", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.cityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+
+
+        <div class="form-group1">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="reset" value="reset" class="btn btn-danger" />
+                <input type="submit" value="Create" class="btn btn-success" />
+                
+            </div>
+        </div>
+    </div>
+}
+@*
+<div class="s2">
+ 
+    @Html.ActionLink("Back To List ", "Index", null, new { @class = "btn btn-primary btn-large" })
+</div>
+    *@
+<script src="~/Scripts/jquery-1.7.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
